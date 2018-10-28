@@ -1,0 +1,230 @@
+body {
+	font-family: Arial, San-Serif;
+	font-size: 100%;
+}
+ul {
+	margin: 0;
+	padding:0;
+}
+ul li {
+	list-style-type: none;
+}
+a {
+	text-decoration: none;
+}
+p {
+	font-size: 13px;
+	line-height: 1.3em;
+}
+.container {
+	margin: 0 auto;
+	width: 960px;
+}
+
+/* HEADER */
+.header {
+	padding: 30px 0;
+	background-color: #0d50bc;
+}
+.header h1,
+.header h2 {
+	font-size: 50px;
+	color:#77b3ef;
+	text-align: center;
+font-family: matura mt script capitals, sans-serif;
+
+}
+.fontimages{
+float: left;
+padding: 0 0px 0px 100px;
+}
+
+/* NAVIGATION */
+.page-navigation {
+	background-color: #222;
+	border-color: #101010;
+	min-height: 64px;
+}
+.page-navigation li {
+	float: left;
+	width: 150px;
+}
+.page-navigation a {
+	display: block;
+	color: #9d9d9d;
+	line-height: 4em;
+	font-weight: bold;
+	text-align: center;
+}
+.page-navigation li a:hover {
+	color: yellowgreen;
+	background-color: black;
+}
+
+
+.login input[type="submit"]:hover,
+button:hover {
+	background-color: darkgrey;
+	color: white;
+}
+
+
+/* MAIN PART */
+.collections {
+	overflow: auto;
+}
+.collection-title {
+	padding-bottom: 5px;
+	border-bottom: 1px solid #777;
+	font-size: 36px;
+}
+.collection-title small {
+	color: #777;
+	font-size: 70%;
+}
+.collection-item-outer {
+	display: inline-block;
+	float: left;
+	padding-left: 5px;
+	padding-right: 5px;
+	width: 33.33%;
+	box-sizing: border-box;
+}
+.collections > div:first-child {
+	padding-left: 0;
+	padding-right: 10px;
+}
+.collections > div:last-child {
+	padding-right: 0;
+	padding-left: 10px;
+}
+.collection-item {
+	border: 1px solid #959595;
+}
+
+.collection-text {
+	padding: 0 20px 20px 20px;
+}
+.collection-text h3 {
+	color: yellowgreen;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.collection-text p {
+	height: 80px;
+	overflow: hidden;
+}
+.collection-text button {
+	padding: 10px;
+	border: 1px solid transparent;
+	border-radius: 5px;
+	outline: none;
+}
+
+/* FOOTER */
+.footer {
+	background-color: #231d7a;
+	color: white;
+	padding: 20px 0;
+	margin-top: 60px;
+
+}
+/*.gall
+ {
+   position: relative;  
+   top:60px;
+   padding-top: 600px;
+  background-color:#b727e8  ;
+}
+.gall img {
+  position: absolute;
+  top: 25%;
+  left: 12.5%;
+  max-width: 24.5%;
+  max-height: 49.5%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  cursor: zoom-in;
+  transition: .2s;
+}
+.gall img:nth-child(4n-2) {left: 37.5%;}
+.gall img:nth-child(4n-1) {left: 62.5%;}
+.gall img:nth-child(4n) {left: 87.5%;}
+.gall img:nth-child(n+5) {top: 75%;}
+
+
+}
+
+*/
+.images{
+
+	  flex-direction:row;
+	  display: flex;
+	  flex-wrap: wrap;  /*переносить картинки на следуюую строку если они больше не влазят.*/
+	  padding: 15px 10px 180px 50px;
+
+	}
+.images img
+{ 
+ margin: 0 auto; 
+ width: 15em; /* ширина картинки*/ 
+  height: 10em;
+
+
+ }
+/*
+.images img {
+  position: ;
+  top: 25%;
+  left: 20.5%;
+ 
+  cursor: zoom-in;
+  transition: .2s;
+}
+.images img:focus {
+ 
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  max-width: 100%;
+  max-height: 100%;
+  outline: none;
+  pointer-events: none;
+}
+.images img:focus ~ div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  cursor: zoom-out;
+}*/
+
+
+
+.images img{
+-webkit-transform:scale(0.8);/* Webkit: уменьшаем размер до 0.8*/
+-moz-transform:scale(0.8); /*Mozilla: масштабирование*/
+-o-transform:scale(0.8); /*Opera: масштабирование*/
+-webkit-transition-duration: 0.5s; /*Webkit: длительность анимации*/
+-moz-transition-duration: 0.5s;/* Mozilla: длительность анимации*/
+-o-transition-duration: 0.5s;/* Opera: длительность анимации*/
+opacity: 0.9; /*Начальная прозрачность изображений*/
+margin: 0 10px 5px 0;/*Интервалы между изображениями*/
+}
+
+
+.images img:hover{
+-webkit-transform:scale(1.5); /*Webkit: увеличиваем размер до 1.2x*/
+-moz-transform:scale(1.1); /*Mozilla: масштабирование*/
+-o-transform:scale(1.5); /*Opera: масштабирование*/
+box-shadow:0px 0px 30px gray; /*CSS3 тени: 30px размытая тень вокруг всего изображения*/
+-webkit-box-shadow:0px 0px 30px gray;/* Webkit: тени*/
+-moz-box-shadow:0px 0px 30px gray;/* Mozilla: тени*/
+opacity: 1;
+z-index:5;
+}
+
+
