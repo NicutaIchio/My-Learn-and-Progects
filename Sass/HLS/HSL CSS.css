@@ -1,0 +1,24 @@
+$primary-color: red; 
+
+
+.row {
+  width: 50%;
+  margin: 50px auto;
+  display: table;
+  
+  div {
+    height: 50px; 
+    width: 20%;
+    display: table-cell; 
+    line-height: 50px; 
+    text-align: center;
+    
+    &:nth-child(1) {
+      background-color: $primary-color
+    }
+    
+    &:nth-child(2) {
+      background-color: adjust-hue($primary-color, 20%);
+    }
+  }
+}

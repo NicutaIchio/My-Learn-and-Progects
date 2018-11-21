@@ -1,0 +1,33 @@
+$primary-color: red; 
+
+
+.row {
+  width: 50%;
+  margin: 50px auto;
+  display: table;
+  
+  div {
+    height: 50px; 
+    width: 20%;
+    display: table-cell; 
+    line-height: 50px; 
+    text-align: center;
+    
+    &:nth-child(1) {
+      background-color: saturate($primary-color, 10%);
+    }
+    
+    &:nth-child(2) {
+      background-color: desaturate($primary-color, 30%);
+    }
+    
+    &:nth-child(3) {
+      background-color: desaturate($primary-color, 40%);
+    }
+    
+    &:nth-child(4) {
+      background-color: desaturate($primary-color, 
+        50%);
+    }
+  }
+}
