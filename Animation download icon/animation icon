@@ -1,0 +1,78 @@
+.loading {
+  position: relative;
+  width: 0;
+  padding: 20px;  /* если задать в %, то будет рассчитываться от ширины родителя */
+  background:
+   linear-gradient(rgba(0,0,0,1) 30%, transparent 30%, transparent 70%, rgba(0,0,0,.4) 70%),
+   linear-gradient(to left, rgba(0,0,0,.2) 30%, transparent 30%, transparent 70%, rgba(0,0,0,.8) 70%);
+  background-repeat: no-repeat;
+  background-size: 10% 100%, 100% 10%;
+  background-position: 50% 0%, 0 50%;
+  -webkit-animation: loading .7s infinite steps(8);
+  animation: loading .7s infinite steps(8);
+}
+.loading:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+   linear-gradient(rgba(0,0,0,.1) 30%, transparent 30%, transparent 70%, rgba(0,0,0,.5) 70%),
+   linear-gradient(to left, rgba(0,0,0,.3) 30%, transparent 30%, transparent 70%, rgba(0,0,0,.9) 70%);
+  background-repeat: no-repeat;
+  background-size: 10% 100%, 100% 10%;
+  background-position: 50% 0%, 0 50%;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+@-webkit-keyframes loading {
+  100% {-webkit-transform: rotate(1turn);}
+}
+@keyframes loading {
+  100% {transform: rotate(1turn);}
+}
+
+\****************************************************************************************************************\
+
+.loading1 {
+  width: 0;
+  padding: 12px;
+  background-image:
+   radial-gradient(circle at 0% 0%, transparent 40%, rgb(0,255,0) 40%, rgb(0,255,0) 70%, transparent 70%),
+   radial-gradient(circle at 100% 0%, transparent 40%, rgba(0,255,0,.2) 40%, rgba(0,255,0,.2) 70%, transparent 70%),
+   radial-gradient(circle at 100% 100%, transparent 40%, rgba(0,255,0,.2) 40%, rgba(0,255,0,.2) 70%, transparent 70%),
+   radial-gradient(circle at 0% 100%, transparent 40%, rgba(0,255,0,.2) 40%, rgba(0,255,0,.2) 70%, transparent 70%);
+  background-repeat: no-repeat;
+  background-size: 50% 50%;
+  background-position: 100% 100%, 0 100%, 0 0, 100% 0;
+  -webkit-animation: loading1 linear .7s infinite;
+  animation: loading1 linear .7s infinite;
+}
+@-webkit-keyframes loading1 {
+  100% {-webkit-transform: rotate(360deg);}
+}
+@keyframes loading1 {
+  100% {transform: rotate(360deg);}
+}
+
+
+OR
+
+
+.loading2 {
+  width: 15px;
+  height: 15px;
+  border: 5px solid #ccffcc;  /* полупрозрачный цвет ставить не стоит, появляются ненужные линии */
+  border-top-color: rgb(0,255,0);
+  border-radius: 100%;
+  -webkit-animation: loading2 linear .7s infinite;
+  animation: loading2 linear .7s infinite;
+}
+@-webkit-keyframes loading2 {
+  100% {-webkit-transform: rotate(360deg);}
+}
+@keyframes loading2 {
+  100% {transform: rotate(360deg);}
+}
