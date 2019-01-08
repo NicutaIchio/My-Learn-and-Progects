@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="card-wrapper">
+    <div class="greeting">
+      Greetings from
+    </div>
+    <div class="city">
+      <div class="city-title">
+        PALO 
+      </div>
+      <div class="city-title-shadow">
+        PALO 
+      </div>
+    </div>
+    <div class="greeting">
+      California
+    </div>
+  </div>
+</div>
