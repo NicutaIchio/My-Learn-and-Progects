@@ -1,0 +1,53 @@
+$shadow-color: #C03820;
+.container {
+  display: flex;
+  justify-content: center;
+  min-width: 800px;
+  margin-top: 50px;
+}
+.card-wrapper {
+  overflow: hidden;
+  box-shadow: 0px 5px 30px rgba(0,0,0,0.25);
+  border: 20px solid #ffffff;
+  width: 800px;
+  height: 500px;
+  background: linear-gradient(172deg, #FFE3EF 64%, #6dd5ed 100%);
+}
+.greeting {
+  margin: 10px 0 0 20px;
+  font-size: 60px;
+  font-family: 'Yellowtail', cursive;
+  letter-spacing: 3px;
+  color: #222222;
+}
+.city {
+  position: relative;
+}
+.city-title,
+.city-title-shadow {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  display: block;
+  width: 100%;
+  font-size: 200px;
+  font-family: 'Oswald', sans-serif;
+  text-align: center;
+  letter-spacing: -13px;
+  transform: skewY(-8deg);
+}
+.city-title {
+  z-index: 1;
+   -webkit-text-stroke: 4px #222222;
+  background: url('https://images.unsplash.com/photo-1449034446853-66c86144b0ad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60') no-repeat center center/ cover;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.city-title-shadow {
+    text-shadow: 2px 1px 0px $shadow-color, 2px 2px 0px $shadow-color, 3px 3px 0px $shadow-color, 4px 4px 0px $shadow-color, 5px 5px 0px $shadow-color, 6px 6px 0px $shadow-color, 7px 7px 0px $shadow-color, 8px 8px 0px $shadow-color, 9px 9px 0px $shadow-color, 10px 10px 0px $shadow-color, 11px 11px 0px $shadow-color, 12px 12px 0px $shadow-color, 13px 13px 0px $shadow-color, 14px 14px 0px $shadow-color, 15px 15px 0px $shadow-color;
+}
+.city + .greeting {
+  margin: 300px 24px 0 0;
+  float: right;
+}
