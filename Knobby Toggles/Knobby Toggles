@@ -1,0 +1,177 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font: normal 1.6rem/1.6 'Work Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+main {
+  flex-direction: column;
+}
+
+.item {
+  align-self: stretch;
+  padding: 2rem 0;
+  text-align: center;
+  
+  &:not(:last-of-type) {
+    border-bottom: 1px solid #ccc;
+  }
+  
+  h3 {
+    margin: 0 0 10px 0;
+    font-weight: normal;
+    font-size: 1.8rem;
+    color: #666;
+  }
+}
+
+$input-bg-static: #ddd;
+$input-bg-pseudo-active: #43A047;
+$input-bg-pseudo-static: #E53935;
+$input-bg-light-active: #FFFF00;
+
+$input-width: 8rem; // adjust only this number for dimensions
+
+$input-radius: calc( #{$input-width} / 2 );
+$input-height: calc( #{$input-width} / 2 );
+$input-light-dims: calc( #{$input-height} / 2.5 );
+
+.knob-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.light {
+  display: inline-block;
+  width: $input-light-dims;
+  height: $input-light-dims;
+  border-radius: 100%;
+  background-color: $input-bg-static;
+  margin: 0 0 0 1rem;
+  box-shadow: 0 0 0 .25rem darken($input-bg-static, 7.5%);
+  transition: background 400ms ease;
+}
+
+input[type="checkbox"] {
+  position: relative;
+  appearance: none;
+  width: $input-width;
+  height: $input-height;
+  background-color: $input-bg-static;
+  border-radius: $input-radius;
+  outline: none; // bad accessibility
+  transition: background 450ms ease;
+  box-shadow: 0 0 0 3px darken($input-bg-static, 7.5%);
+  
+  &:before, &:after {
+    position: absolute;
+    display: block;
+    content: "";
+    border-radius: 100%;
+    transition:
+      background 450ms ease,
+      transform 450ms ease;
+  }
+  
+  &:before {
+    width: calc( #{$input-width} / 2 );
+    height: $input-height;
+    background-color: $input-bg-pseudo-static;
+  }
+  
+  // active state
+  &:checked {
+    
+    &:before {
+      background-color: $input-bg-pseudo-active;
+      transform: translateX(100%);
+    }
+  }
+  
+  // conic gradient
+  &.conic {
+    transition:
+      background 450ms ease,
+      transform 450ms ease;
+    
+    &:before {
+      box-shadow: inset 0 0 0 3px darken($input-bg-pseudo-static, 20%);
+      background: conic-gradient(
+        $input-bg-pseudo-static,
+        darken($input-bg-pseudo-static, 20%)
+      );
+    }
+    
+    &:checked {
+      
+      &:before {
+        box-shadow: inset 0 0 0 3px darken($input-bg-pseudo-active, 20%);
+        background: conic-gradient(
+          $input-bg-pseudo-active,
+          darken($input-bg-pseudo-active, 20%)
+        );
+        transform: translateX(100%) rotate(360deg);
+      }
+    }
+  }
+  
+  // old school knob
+  &.knob {
+    background: linear-gradient(
+      to bottom,
+      darken($input-bg-static, 15%) 25%,
+      $input-bg-static 100%
+    );
+    
+    &:before, &:after {
+      transform: translate(0, -2px) rotate(0deg);
+    }
+    
+    &:before {
+      box-shadow:
+        0 0 0 1px #ddd,
+        0 0 0 1px #777;
+      background: conic-gradient(
+        $input-bg-static,
+        darken($input-bg-static, 20%)
+      ); 
+    }
+    
+    &:after {
+      width: calc( #{$input-width} / 2 );
+      height: $input-height;
+      box-shadow: 
+        inset 0 0 0 1.5px darken($input-bg-static, 30%),
+        1.5px 1.5px 0 0 darken($input-bg-static, 25%),
+        2.5px 2.5px 0 0 darken($input-bg-static, 25%),
+        3px 3px 0 0 darken($input-bg-static, 25%);
+    }
+    
+    &:checked {
+      
+      &:before {
+        transform: translate(100%, -2px) rotate(360deg);
+      }
+      
+      &:after {
+        transform: translate(100%, -2px);
+      }
+      
+      + .light {
+        background-color: $input-bg-light-active;
+      }
+    }
+  }
+}
