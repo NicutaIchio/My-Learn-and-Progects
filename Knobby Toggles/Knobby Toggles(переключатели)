@@ -1,0 +1,12 @@
+main
+  .item
+    h3 Simple
+    input(type='checkbox')
+  .item
+    h3 Conic Gradient
+    input.conic(type='checkbox')
+  .item
+    h3 Old School Knob
+    .knob-wrap
+      input.knob(type='checkbox')
+      span.light
