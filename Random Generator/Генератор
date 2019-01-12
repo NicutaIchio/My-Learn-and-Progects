@@ -1,0 +1,198 @@
+:root {
+  --green: #A2CCB6;
+  --yellow: #FCEEB5;
+  --peach: #EE786E;
+}
+* {
+  box-sizing: border-box;
+}
+html {
+  font-family: Coiny, sans-serif;
+  line-height: 1.5;
+  background: var(--yellow);
+  color: var(--peach);
+  overflow-y: scroll;
+  min-height: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+p {
+  font-family: Thasadith, sans-serif;
+  font-weight: 700;
+  margin: 0
+}
+
+label+p {
+  margin: -0.5rem 0 .5rem;
+}
+
+h1, h2 {
+  font-weight: 400;
+}
+h2 {
+  margin-bottom: 0;
+}
+h1 {
+  text-align: center;
+  font-size: calc(2rem + 4vw);
+  line-height: 1;
+  text-shadow: 1px 1px 0 var(--yellow), 2px 2px 0 var(--yellow), 3px 3px 0 currentcolor, 4px 4px 0 currentcolor;
+}
+label,
+button,
+textarea {
+  font-family: inherit;
+  font-size: 1.5rem;
+}
+
+textarea {
+  padding: .75rem 1.5rem;
+  background: var(--peach);
+  color: var(--yellow);
+  border: none;
+  border-radius: 10px; 
+  width: 100%;
+  position: relative;
+}
+
+.generator{
+  margin: 0 auto;
+  width: 90%;
+  max-width: 960px;
+}
+
+h1 span,
+.members,
+button {
+  color: var(--green);
+}
+.members textarea {
+  background: var(--green);
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+form > div {
+  width: 100%;
+}
+@media screen and (min-width: 960px) {
+  form > div {
+    flex: 1 0 calc(50% - .5rem);
+    max-width: calc(50% - .5rem);
+  }
+}
+
+button {
+  border-radius: 10px;
+  cursor: pointer;
+}
+button[type="submit"] {
+  width: 100%;
+  padding: 0.75rem;
+  border: 3px solid;
+  background: transparent;
+  position: relative;
+  margin-top: 1rem;
+  transition: 0.25s ease-in;
+}
+button[type="submit"]:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: var(--green);
+  opacity: .3;
+  z-index: -1;
+  transform: translate3d(6px, 6px, 0);
+  border-radius: 7px;
+  transition: inherit;
+}
+button:focus {
+  outline: none;
+}
+button[type="submit"]:hover,
+button[type="submit"]:focus {
+  color: var(--yellow); 
+}
+button[type="submit"]:hover:before,
+button[type="submit"]:focus:before {
+  opacity: 1;
+  transform: translate3d(0,0,0);
+}
+
+textarea:focus {
+  outline: none; 
+  box-shadow: inset 0 0 0 3px currentcolor, inset 3px 3px 0 4px var(--yellow), 3px 3px 0 #f7c49c, 4px 4px 0 #f7c49c;
+  background: #f7c49c;
+  color: var(--peach);
+}
+
+.members textarea:focus {
+  box-shadow: inset 0 0 0 3px currentcolor, inset 3px 3px 0 4px var(--yellow), 3px 3px 0 #e1e4b6, 4px 4px 0 #e1e4b6;
+  background: #e1e4b6;
+  color: var(--green);
+}
+
+.finalteams {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity ease-in .5s;
+}
+.finalteams:not(:empty) {
+  margin: 2rem auto;
+  background: var(--yellow);
+  border-radius: 10px;
+  padding: 2rem;
+  border: 3px solid var(--peach);
+  box-shadow: 1px 1px 0 var(--peach), 2px 2px 0 var(--peach), 3px 3px 0 var(--peach);
+}
+
+section:first-of-type h2 {
+  margin: 0;
+}
+
+canvas {
+  display: block;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -10;
+}
+.results {
+  position: relative;
+}
+.copy {
+  border: none;
+  background: var(--peach);
+  color: var(--yellow);
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  visibility: hidden;
+  opacity: 0;
+  transition: .5s .5s;
+}
+.copy:hover,
+.copy:focus {
+  color: var(--peach);
+  box-shadow: 0 0 0 3px;
+  background: transparent;
+}
+.finalteams:not(:empty),
+.finalteams:not(:empty) + .copy  {
+  visibility: visible;
+  opacity: 1;
+}
