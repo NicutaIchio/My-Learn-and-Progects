@@ -1,0 +1,22 @@
+<div class="generator">
+  <h1>
+    <span>Random Teams</span> Generator
+  </h1>
+  <form id="form">
+    <div>
+      <label class="method-label method-2" for="teams-labels">Teams' Names</label>
+      <p>one per line or comma separated</p>
+      <textarea id="teams-labels" cols="20" rows="1" name="teams-labels" autofocus>Peaches, Greens, Sandies</textarea>            
+    </div>
+    <div class="members">
+      <label for="teams-members">Members' Names</label>
+      <p>one per line or comma separated</p>
+      <textarea id="teams-members" cols="20" rows="5" name="teams-members">Anthony, Layla, Daniela, Murielle, Louis, Florian, Marc, Ryan, Kesia, Margot, Amandine</textarea>
+    </div>
+    <button type="submit" id="submit" class="submit">Go!</button>
+  </form>
+  <div class="results" id="results">
+    <div class="finalteams" id="finalteams"></div>
+    <button class="copy" type="button" id="copy">copy</button>
+  </div>
+</div>
