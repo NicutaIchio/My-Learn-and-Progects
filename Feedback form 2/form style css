@@ -1,0 +1,33 @@
+#submit {
+font-family: sans-serif;
+color: #ffffff;
+font-size: 18px;
+padding: 0px;
+text-decoration: none;
+box-shadow: 0px 1px 3px #666666;
+-webkit-box-shadow: 0px 1px 3px #666666;
+-moz-box-shadow: 0px 1px 3px #666666;
+text-shadow: 1px 1px 3px #666666;
+background: -webkit-gradient(linear, 0 0, 0 100%, from(#ce1515), to(#8b0d0d));
+background: -moz-linear-gradient(top, #ce1515, #8b0d0d);
+}
+ 
+#submit:hover {
+ background: -webkit-gradient(linear, 0 0, 0 100%, from(#8b0d0d), to(#ce1515));
+ background: -moz-linear-gradient(top, #8b0d0d, #ce1515)
+}
+#respond input[type=text], textarea {
+ -webkit-transition: all 0.30s ease-in-out;
+ -moz-transition: all 0.30s ease-in-out;
+ -ms-transition: all 0.30s ease-in-out;
+ -o-transition: all 0.30s ease-in-out;
+ outline: none;
+ padding: 3px 0px 3px 3px;
+ margin: 5px 1px 3px 0px;
+ border: 1px solid #DDDDDD;
+}
+#respond input[type=text]:focus, textarea:focus {
+ box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+ margin: 5px 1px 3px 0px;
+ border: 1px solid rgba(81, 203, 238, 1);
+}
