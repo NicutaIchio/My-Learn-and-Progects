@@ -1,0 +1,46 @@
+<meta http-equiv='refresh' content='6; url=https://bloggood.ru'>
+<meta charset="UTF-8" />
+<?php
+if (isset($_POST['name'])) {$name = $_POST['name']; if ($name == '') {unset($name);}}
+if (isset($_POST['email'])) {$email = $_POST['email']; if ($email == '') {unset($email);}}
+if (isset($_POST['sub'])) {$sub = $_POST['sub']; if ($sub == '') {unset($sub);}}
+if (isset($_POST['body'])) {$body = $_POST['body']; if ($body == '') {unset($body);}}
+ 
+if (isset($name) && isset($email) && isset($sub) && isset($body)){
+ 
+$address = "test-bloggood@rambler.ru";
+$mes = "Имя: $name \nE-mail: $email \nТема: $sub \nТекст: $body";
+$send = mail ($address,$sub,$mes,"Content-type:text/plain; charset = UTF-8\r\nFrom:$email");
+if ($send == 'true')
+{echo "Сообщение отправлено успешно, через 6 секунд Вы будете направлены на главную страницу блога <a href='https://bloggood.ru/'>BLOGGOOD.RU</a>,где сможете продолжить ваш просмотр";}
+else {echo "Ошибка, сообщение не отправлено!";}
+ 
+}
+else
+{
+echo "Вы заполнили не все поля, вернитесь назад и заполните необходимые поля!";
+}
+?>
+
+
+
+/*ету форму надо вставить в главний файл по примеру ниже
+
+ВСТАВЛЯЕМ В ТЕГ <body></body>
+
+
+<h2>Форма обратной связи.</h2>
+<form name="MyForm" action="https://bloggood.ru/mail.php" method="post">
+<p><input class="input" name="name" type="text" style="width:15%" /> Ваше имя*</p>
+ 
+<p><input class="input" name="email" type="text" style="width:15%" /> Электронная почта*</p>
+ 
+<p><input class="input" name="sub" type="text" style="width:15%" /> Тема сообщения</p>
+ 
+<p>Текст сообщения:<br /><textarea name="body" cols="1" rows="5" style="width:30%" /></textarea></p>
+<p><input id="submit" value="Отправить" type="submit" /></p>
+</form>
+
+
+
+*/
