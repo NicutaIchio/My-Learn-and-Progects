@@ -1,0 +1,174 @@
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+w = ctx.canvas.width = window.innerWidth;
+h = ctx.canvas.height = window.innerHeight;
+
+// Misc
+dots = [];
+angle = 0;
+
+// Emitter
+rotateRadius = 100;
+mainDotSize = 0;
+mainDotSpeed = 1;
+
+// Particles
+emitNum = 20;
+spawnRate = 2000;
+maxTime = 3000;
+minTime = 1000;
+maxSpeed = -1.5;
+minSpeed = -3;
+startOpacity = 1;
+emitDotSize = 2;
+trailLength = 0.9;
+hueStart = 200;
+hueRange = 0.3;
+trail = false;
+glow = 20;
+
+var controls = new function() {
+  this.rotateRadius = rotateRadius;
+  this.mainDotSize = mainDotSize;
+  this.mainDotSpeed = mainDotSpeed;
+  this.emitNum = emitNum;
+  this.spawnRate = spawnRate;
+  this.maxTime = maxTime;
+  this.minTime = minTime;
+  this.maxSpeed = maxSpeed;
+  this.minSpeed = minSpeed;
+  this.startOpacity = startOpacity;
+  this.emitDotSize = emitDotSize;
+  this.trailLength = trailLength;
+  this.hueStart = hueStart;
+  this.hueRange = hueRange;
+  this.glow = glow;
+  this.trail = trail;
+  
+  this.redraw = function() {
+    rotateRadius = controls.rotateRadius;
+    mainDotSize = controls.mainDotSize;
+    mainDotSpeed = controls.mainDotSpeed;
+    emitNum = controls.emitNum;
+    spawnRate = controls.spawnRate;
+    maxTime = controls.maxTime;
+    minTime = controls.minTime;
+    maxSpeed = controls.maxSpeed;
+    minSpeed = controls.minSpeed;
+    startOpacity = controls.startOpacity;
+    emitDotSize = controls.emitDotSize;
+    trailLength = controls.trailLength;
+    hueStart = controls.hueStart;
+    hueRange = controls.hueRange;
+    glow = controls.glow;
+    
+    if (controls.trail) {
+      trail = true;
+      canvas.height = h;
+    } else {
+      trail = false;
+      ctx.globalCompositeOperation  = "lighter";
+    }
+    
+    clearInterval(emitter)
+    emitter = setInterval(emitDots, spawnRate);
+  }
+}
+
+var gui = new dat.GUI({resizable : false});
+var f1 = gui.addFolder('Emitter');
+var f2 = gui.addFolder('Particles');
+var f3 = gui.addFolder('Timing');
+f1.add(controls, "rotateRadius", 0, 200).onChange(controls.redraw);
+f1.add(controls, "mainDotSize", 0, 30).onChange(controls.redraw);
+f1.add(controls, "mainDotSpeed", 0.1, 5).onChange(controls.redraw);
+f1.add(controls, "emitNum", 1, 100).step(1).onChange(controls.redraw);
+f2.add(controls, "maxSpeed", -5, 5).onChange(controls.redraw);
+f2.add(controls, "minSpeed", -5, 5).onChange(controls.redraw);
+f2.add(controls, "startOpacity", 0.1, 1).onChange(controls.redraw);
+f2.add(controls, "emitDotSize", 0.1, 10).onChange(controls.redraw);
+f2.add(controls, "hueStart", 0, 360).onChange(controls.redraw);
+f2.add(controls, "hueRange", 0, 1).onChange(controls.redraw);
+f2.add(controls, "glow", 0, 50).onChange(controls.redraw);
+f2.add(controls, "trail").onChange(controls.redraw);
+f2.add(controls, "trailLength", 0.5, 0.99).onChange(controls.redraw);
+f3.add(controls, "spawnRate", 50, 5000).step(50).onChange(controls.redraw);
+f3.add(controls, "maxTime", 2000, 5000).step(50).onChange(controls.redraw);
+f3.add(controls, "minTime", 500, 2000).step(50).onChange(controls.redraw);
+f1.open();f2.open();f3.open();
+
+function draw() {
+  angle = (angle + mainDotSpeed) % 360;
+  ctx.fillStyle = 'rgba(0,0,0,'+(1-trailLength)+')';
+  ctx.fillRect(0,0,w,h);
+  
+  for(var i=0; i<dots.length; i++){
+    var dif = (Date.now()-dots[i].st)/dots[i].lt;
+    var pct = Math.round(dif*100)/100;
+    var rpct = startOpacity - pct + 0;
+    
+    ctx.save();
+    ctx.translate(w/2, h/2);
+    ctx.rotate(angle * Math.PI / 180);
+    ctx.translate(-rotateRadius, -rotateRadius);
+    ctx.beginPath();
+    ctx.fillStyle = "hsla("+(hueStart+(dots[i].x*hueRange)%360)+",100%,50%,"+rpct+")";
+    ctx.shadowColor = "hsla("+(hueStart+(dots[i].x*hueRange)%360)+",100%,50%,"+rpct+")";
+    ctx.shadowBlur = glow;
+    ctx.arc(dots[i].x, dots[i].y, emitDotSize, 0, Math.PI*2);
+    ctx.fill();
+    ctx.closePath();
+    ctx.restore();
+    
+    dots[i].x -= dots[i].xv;
+    dots[i].y -= dots[i].yv;
+    
+    if(dots[i].lt+dots[i].st<Date.now()){
+      dots.splice(i,1);
+    }
+  }
+  
+  ctx.save();
+  ctx.translate(w / 2, h / 2);
+  ctx.rotate(angle * Math.PI / 180);
+  ctx.translate(-rotateRadius, -rotateRadius);
+  ctx.beginPath();
+  ctx.fillStyle = "#FFF";
+  ctx.arc(0, 0, mainDotSize, 0, Math.PI*2);
+  ctx.closePath();
+  ctx.fill();
+  ctx.restore();
+  
+  requestAnimationFrame(draw);
+}
+requestAnimationFrame(draw);
+
+function emitDots(x,y){
+  for(var i=0; i<emitNum; i++){
+    dots.push({
+      x: 0,
+      y: 0,
+      xv: Math.random()*(maxSpeed-minSpeed)+minSpeed,
+      yv: Math.random()*(maxSpeed-minSpeed)+minSpeed,
+      lt: Math.random()*(maxTime-minTime)+minTime,
+      st: Date.now()
+    });
+  }
+}
+
+emitter = setInterval(emitDots, spawnRate);emitDots();
+
+window.onclick = function(){
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+window.onresize = function() {
+  w = ctx.canvas.width = window.innerWidth;
+  h = ctx.canvas.height = window.innerHeight;
+  if(trail == false){
+    ctx.globalCompositeOperation  = "lighter";
+  }
+};
+if(trail == false){
+  ctx.globalCompositeOperation  = "lighter";
+}
