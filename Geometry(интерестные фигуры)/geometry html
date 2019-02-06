@@ -1,0 +1,5 @@
+<canvas id="canvas"></canvas>
+<div id="info">Click on the Canvas to clear<br>
+  And make sure to check out Particles > trail<br>
+  Turn Particles > glow to 0 for better performance
+</div>
